@@ -8,10 +8,13 @@
 import Foundation
 
 struct NewsService {
-    let apiClient: APIClient
     
-    init(apiClient: APIClient) {
+    let apiClient: APIClient
+    let imageCache: ImageCache
+    
+    init(apiClient: APIClient, imageCache: ImageCache) {
         self.apiClient = apiClient
+        self.imageCache = imageCache
     }
     
     typealias CompletionHandler = (Result<NewsStories, Error>) -> Void
@@ -55,8 +58,13 @@ struct NewsService {
             let headLine = asset.headline
             let abstract = asset.theAbstract
             let byLine = asset.byLine
+            let newsBody = asset.body
             
-            let newsImage: NewsImage?
+            guard let newsImage: NewsImage = getSmallestNewsImage(images: asset.relatedImages) else {
+                fatalError("Fail to get smallest image")
+            }
+
+            imageCache.cacheImageURL(newsImage.imageUrl, forNewsId: newsId)
             
             let newsItem = News(newsId: newsId,
                                 newsAssetType: newsAssetType,
@@ -66,11 +74,12 @@ struct NewsService {
                                 headLine: headLine,
                                 abstract: abstract,
                                 byLine: byLine,
-                                newsImage: nil)
+                                newsImage: newsImage,
+                                newsBody: newsBody)
             
             newsList.append(newsItem)
+            
         }
-        
         
         return NewsStories(id: id,
                            assetType: assetType,
@@ -80,6 +89,45 @@ struct NewsService {
                            displayName: displayName,
                            onTime: onTime,
                            news: newsList)
+    }
+    
+    func getSmallestNewsImage(images: [NewsResponseModel.RelatedImage]) -> NewsImage? {
+        guard let smallestImage = images.min(by: { $0.width < $1.width }) else {
+            return nil
+        }
+        
+        let imageURl = getURLForSmallestImage(smallestImage)
+            
+        return NewsImage (id: smallestImage.id,
+                          assetType: AssetType(rawValue: smallestImage.assetType) ?? .image,
+                          imageUrl: imageURl,
+                          type: smallestImage.type,
+                          description: smallestImage.description,
+                          lastModified: smallestImage.lastModified,
+                          photographer: smallestImage.photographer,
+                          timeStamp: smallestImage.timeStamp,
+                          height: smallestImage.height,
+                          width: smallestImage.width)
+    }
+    
+    func getURLForSmallestImage(_ relatedImage: NewsResponseModel.RelatedImage) -> String {
+        if let image = relatedImage.thumbnail {
+            return image
+        } else if let image = relatedImage.thumbnail2x {
+            return image
+        } else if let image = relatedImage.large {
+            return image
+        } else if let image =  relatedImage.large2x {
+            return image
+        } else if let image = relatedImage.large2x {
+            return image
+        } else if let image = relatedImage.xLarge {
+            return image
+        } else if let image = relatedImage.xLarge2x {
+            return image
+        }
+        
+        return relatedImage.url
     }
 }
     

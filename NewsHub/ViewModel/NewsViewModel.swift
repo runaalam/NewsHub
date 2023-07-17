@@ -13,10 +13,11 @@ class NewsViewModel: ObservableObject {
     @Published var error: Error?
     
     let newsAPIClient = NewsAPIClient()
+    let imageCache = BasicImageCache()
     let newsService: NewsService
     
     init() {
-        self.newsService = NewsService(apiClient: newsAPIClient)
+        self.newsService = NewsService(apiClient: newsAPIClient, imageCache: imageCache)
     }
     
     func fetchAllNews() {
@@ -30,7 +31,16 @@ class NewsViewModel: ObservableObject {
                 
                 switch result {
                 case .success(let newsStories):
-                    self.newsStories = newsStories
+                    let sortedNews = newsStories.news.sorted(by: { $0.newsTimeStamp > $1.newsTimeStamp })
+                    let sortedNewsStories = NewsStories(id: newsStories.id,
+                                                        assetType: newsStories.assetType,
+                                                        url: newsStories.url,
+                                                        lastModified: newsStories.lastModified,
+                                                        timeStamp: newsStories.timeStamp,
+                                                        displayName: newsStories.displayName,
+                                                        onTime: newsStories.onTime,
+                                                        news: sortedNews)
+                    self.newsStories = sortedNewsStories
                     self.error = nil
                 case .failure(let error):
                     self.newsStories = nil
@@ -39,4 +49,24 @@ class NewsViewModel: ObservableObject {
             }
         }
     }
+
+    func getImageUrl(_ newsId: Int) -> String? {
+        return imageCache.getImageURL(forNewsId: newsId)
+    }
+
 }
+
+class NewsDetailsViewModel: ObservableObject {
+    @Published var news: News
+    private let imageCache: ImageCache
+    
+    init(news: News, imageCache: ImageCache) {
+        self.news = news
+        self.imageCache = imageCache
+    }
+    
+    func getImageUrl() -> String? {
+        return imageCache.getImageURL(forNewsId: news.newsId)
+    }
+}
+

@@ -28,6 +28,7 @@ public struct News {
     let abstract: String
     let byLine: String
     let newsImage: NewsImage?
+    let newsBody: String
 }
 
 public struct NewsImage {

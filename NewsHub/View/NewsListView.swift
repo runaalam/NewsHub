@@ -38,36 +38,31 @@ struct NewsRow: View {
     let news: News
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 8) {
+            AsyncImage(url: URL(string: news.newsImage!.imageUrl)) { image in
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            } placeholder: {
+                Color.gray
+            }
+            .frame(height: 200)
+            
             Text(news.headLine)
                 .font(.headline)
+                .multilineTextAlignment(.leading)
+            
             Text(news.byLine)
                 .font(.subheadline)
             Text(news.abstract)
                 .font(.body)
                 .foregroundColor(.secondary)
+                .multilineTextAlignment(.leading)
         }
         .padding()
     }
-}
-
-struct NewsDetailsView: View {
-    let news: News
     
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(news.headLine)
-                .font(.title)
-            Text(news.byLine)
-                .font(.subheadline)
-                .foregroundColor(.secondary)
-            Text(news.abstract)
-                .font(.body)
-                .padding(.top, 8)
-        }
-        .padding()
-        .navigationTitle("News Details")
-    }
 }
 
 struct NewsView_Previews: PreviewProvider {
