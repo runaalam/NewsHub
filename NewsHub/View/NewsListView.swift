@@ -19,9 +19,9 @@ struct NewsListView: View {
                     ProgressView("Loading...")
                 } else if let newsStories = newsViewModel.newsStories {
                     List(newsStories.news, id: \.newsId) { news in
-                        NavigationLink(destination: NewsDetailsView(newsDetailsViewModel: NewsDetailsViewModel(news: news))) {
+                        Link(destination: URL(string: news.newsUrl)!, label: {
                             NewsRow(news: news)
-                        }
+                        })
                     }
                 } else if let error = newsViewModel.error {
                     Text("Error: \(error.localizedDescription)")
