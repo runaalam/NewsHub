@@ -11,7 +11,6 @@ protocol APIClient {
     func fetchData<T: Decodable>(from endpoint: String, responseType: T.Type, completion: @escaping (Result<T, Error>) -> Void)
 }
 
-
 enum APIError: Error {
     case invalidURL
     case requestFailed

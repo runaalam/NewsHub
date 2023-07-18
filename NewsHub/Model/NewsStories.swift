@@ -26,6 +26,7 @@ public struct News {
     let newsTimeStamp: String
     let headLine: String
     let abstract: String
+    let extendedAbstract: String
     let byLine: String
     let newsImage: NewsImage?
     let newsBody: String

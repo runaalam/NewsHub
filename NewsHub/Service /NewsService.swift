@@ -8,13 +8,10 @@
 import Foundation
 
 struct NewsService {
-    
     let apiClient: APIClient
-    let imageCache: ImageCache
-    
-    init(apiClient: APIClient, imageCache: ImageCache) {
+   
+    init(apiClient: APIClient) {
         self.apiClient = apiClient
-        self.imageCache = imageCache
     }
     
     typealias CompletionHandler = (Result<NewsStories, Error>) -> Void
@@ -57,14 +54,13 @@ struct NewsService {
             let newsTimeStamp = String(asset.timeStamp)
             let headLine = asset.headline
             let abstract = asset.theAbstract
+            let extendedAbstract = asset.extendedAbstract
             let byLine = asset.byLine
             let newsBody = asset.body
             
             guard let newsImage: NewsImage = getSmallestNewsImage(images: asset.relatedImages) else {
                 fatalError("Fail to get smallest image")
             }
-
-            imageCache.cacheImageURL(newsImage.imageUrl, forNewsId: newsId)
             
             let newsItem = News(newsId: newsId,
                                 newsAssetType: newsAssetType,
@@ -73,6 +69,7 @@ struct NewsService {
                                 newsTimeStamp: newsTimeStamp,
                                 headLine: headLine,
                                 abstract: abstract,
+                                extendedAbstract: extendedAbstract,
                                 byLine: byLine,
                                 newsImage: newsImage,
                                 newsBody: newsBody)

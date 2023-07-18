@@ -9,11 +9,11 @@ import Foundation
 import SwiftUI
 
 struct NewsDetailsView: View {
-    let news: News
-    
+    @StateObject var newsDetailsViewModel: NewsDetailsViewModel
+   
     var body: some View {
         VStack(alignment: .leading) {
-            AsyncImage(url: URL(string: news.newsImage!.imageUrl)) { image in
+            AsyncImage(url: URL(string: newsDetailsViewModel.news.newsImage!.imageUrl)) { image in
                 image
                     .resizable()
                     .scaledToFit()
@@ -21,15 +21,20 @@ struct NewsDetailsView: View {
             } placeholder: {
                 Color.gray
             }
+            .frame(height: 200)
             
-            Text(news.headLine)
+            Text(newsDetailsViewModel.news.headLine)
                 .font(.title)
-            Text(news.byLine)
+            Text(newsDetailsViewModel.news.byLine)
                 .font(.subheadline)
                 .foregroundColor(.secondary)
-            Text(news.newsBody)
+            Text(newsDetailsViewModel.news.abstract)
                 .font(.body)
                 .padding(.top, 8)
+            Link(destination: URL(string: newsDetailsViewModel.news.newsUrl)!, label: {
+                Text("Read this article")
+            })
+            .padding(.top, 8)
         }
         .padding()
         .navigationTitle("News Details")

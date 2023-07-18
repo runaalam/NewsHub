@@ -8,9 +8,10 @@
 import Foundation
 import SwiftUI
 
+
 struct NewsListView: View {
     @ObservedObject var newsViewModel: NewsViewModel
-    
+
     var body: some View {
         NavigationView {
             VStack {
@@ -18,7 +19,7 @@ struct NewsListView: View {
                     ProgressView("Loading...")
                 } else if let newsStories = newsViewModel.newsStories {
                     List(newsStories.news, id: \.newsId) { news in
-                        NavigationLink(destination: NewsDetailsView(news: news)) {
+                        NavigationLink(destination: NewsDetailsView(newsDetailsViewModel: NewsDetailsViewModel(news: news))) {
                             NewsRow(news: news)
                         }
                     }
@@ -62,8 +63,8 @@ struct NewsRow: View {
         }
         .padding()
     }
-    
 }
+
 
 struct NewsView_Previews: PreviewProvider {
     static var previews: some View {

@@ -13,11 +13,10 @@ class NewsViewModel: ObservableObject {
     @Published var error: Error?
     
     let newsAPIClient = NewsAPIClient()
-    let imageCache = BasicImageCache()
     let newsService: NewsService
     
     init() {
-        self.newsService = NewsService(apiClient: newsAPIClient, imageCache: imageCache)
+        self.newsService = NewsService(apiClient: newsAPIClient)
     }
     
     func fetchAllNews() {
@@ -48,25 +47,6 @@ class NewsViewModel: ObservableObject {
                 }
             }
         }
-    }
-
-    func getImageUrl(_ newsId: Int) -> String? {
-        return imageCache.getImageURL(forNewsId: newsId)
-    }
-
-}
-
-class NewsDetailsViewModel: ObservableObject {
-    @Published var news: News
-    private let imageCache: ImageCache
-    
-    init(news: News, imageCache: ImageCache) {
-        self.news = news
-        self.imageCache = imageCache
-    }
-    
-    func getImageUrl() -> String? {
-        return imageCache.getImageURL(forNewsId: news.newsId)
     }
 }
 
