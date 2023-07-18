@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NewsStories {
+public struct NewsStories: Equatable {
     let id: Int
     let assetType: AssetType
     let url: String
@@ -18,7 +18,7 @@ public struct NewsStories {
     let news: [News]
 }
 
-public struct News {
+public struct News: Equatable {
     let newsId: Int
     let newsAssetType: AssetType
     let newsUrl:String
@@ -32,7 +32,7 @@ public struct News {
     let newsBody: String
 }
 
-public struct NewsImage {
+public struct NewsImage: Equatable {
     let id: Int
     let assetType: AssetType
     let imageUrl: String
@@ -49,14 +49,4 @@ public enum AssetType: String {
     case article = "ARTICLE"
     case image = "IMAGE"
     case assetList = "ASSET_LIST"
-}
-
-public enum ImageType: String {
-    case afrArticleLead
-    case afrArticleInline
-    case articleLeadWide
-    case wideLandscape
-    case afrIndexLead
-    case landscape
-    case thumbnail
 }

@@ -24,21 +24,13 @@ struct NewsResponseModel: Codable {
         let lastModified: TimeInterval
         let timeStamp: TimeInterval
         let authors: [Author]
-        let sponsored: Bool
         let headline: String
-        let tabletHeadline: String
-        let indexHeadline: String
         let byLine: String
         let theAbstract: String
         let body: String
         let extendedAbstract: String
-        let liveArticleSummary: String
-        let legalStatus: String
-        let live: Bool
         let numberOfComments: Int
         let acceptComments: Bool
-        let overrides: Overrides
-        let sources: [Source]
         let companies: [Company]
         let categories: [Category]
         let relatedImages: [RelatedImage]
@@ -93,15 +85,6 @@ struct NewsResponseModel: Codable {
         let title: String
         let relatedImages: [RelatedImage]
      
-    }
-
-    struct Overrides: Codable {
-        let overrideAbstract: String
-        let overrideHeadline: String
-    }
-
-    struct Source: Codable {
-        let tagId: String
     }
 
     struct Company: Codable {

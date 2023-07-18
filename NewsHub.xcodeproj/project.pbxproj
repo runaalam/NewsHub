@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FD227FF42A667CCD00223EF0 /* NewsStoriesModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD227FF32A667CCD00223EF0 /* NewsStoriesModelTest.swift */; };
+		FD227FF62A668BB000223EF0 /* NewsResponseModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD227FF52A668BB000223EF0 /* NewsResponseModelTest.swift */; };
 		FD5BBBB42A61372B00AD1266 /* NewsHubApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBBB32A61372B00AD1266 /* NewsHubApp.swift */; };
 		FD5BBBB82A61372C00AD1266 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBBB72A61372C00AD1266 /* Assets.xcassets */; };
 		FD5BBBBB2A61372C00AD1266 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD5BBBBA2A61372C00AD1266 /* Preview Assets.xcassets */; };
-		FD5BBBC52A61372C00AD1266 /* NewsHubTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBBC42A61372C00AD1266 /* NewsHubTests.swift */; };
 		FD5BBBCF2A61372C00AD1266 /* NewsHubUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBBCE2A61372C00AD1266 /* NewsHubUITests.swift */; };
 		FD5BBBD12A61372C00AD1266 /* NewsHubUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBBD02A61372C00AD1266 /* NewsHubUITestsLaunchTests.swift */; };
 		FD5BBBDF2A61375800AD1266 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBBDE2A61375800AD1266 /* ApiClient.swift */; };
@@ -40,12 +41,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FD227FF32A667CCD00223EF0 /* NewsStoriesModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStoriesModelTest.swift; sourceTree = "<group>"; };
+		FD227FF52A668BB000223EF0 /* NewsResponseModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsResponseModelTest.swift; sourceTree = "<group>"; };
 		FD5BBBB02A61372B00AD1266 /* NewsHub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NewsHub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5BBBB32A61372B00AD1266 /* NewsHubApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHubApp.swift; sourceTree = "<group>"; };
 		FD5BBBB72A61372C00AD1266 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FD5BBBBA2A61372C00AD1266 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FD5BBBC02A61372C00AD1266 /* NewsHubTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsHubTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FD5BBBC42A61372C00AD1266 /* NewsHubTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHubTests.swift; sourceTree = "<group>"; };
 		FD5BBBCA2A61372C00AD1266 /* NewsHubUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewsHubUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD5BBBCE2A61372C00AD1266 /* NewsHubUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHubUITests.swift; sourceTree = "<group>"; };
 		FD5BBBD02A61372C00AD1266 /* NewsHubUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHubUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -128,7 +130,8 @@
 		FD5BBBC32A61372C00AD1266 /* NewsHubTests */ = {
 			isa = PBXGroup;
 			children = (
-				FD5BBBC42A61372C00AD1266 /* NewsHubTests.swift */,
+				FD227FF32A667CCD00223EF0 /* NewsStoriesModelTest.swift */,
+				FD227FF52A668BB000223EF0 /* NewsResponseModelTest.swift */,
 			);
 			path = NewsHubTests;
 			sourceTree = "<group>";
@@ -326,7 +329,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD5BBBC52A61372C00AD1266 /* NewsHubTests.swift in Sources */,
+				FD227FF42A667CCD00223EF0 /* NewsStoriesModelTest.swift in Sources */,
+				FD227FF62A668BB000223EF0 /* NewsResponseModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
