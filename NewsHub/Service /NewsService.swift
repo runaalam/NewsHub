@@ -51,7 +51,7 @@ struct NewsService {
             let newsAssetType = AssetType(rawValue: asset.assetType) ?? .assetList
             let newsUrl = asset.url
             let newsLastModified = asset.lastModified
-            let newsTimeStamp = String(asset.timeStamp)
+            let newsTimeStamp = asset.timeStamp
             let headLine = asset.headline
             let abstract = asset.theAbstract
             let extendedAbstract = asset.extendedAbstract
@@ -77,6 +77,7 @@ struct NewsService {
             newsList.append(newsItem)
             
         }
+        let sortedNewsList = newsList.sorted(by: { $0.newsTimeStamp > $1.newsTimeStamp })
         
         return NewsStories(id: id,
                            assetType: assetType,
@@ -85,7 +86,7 @@ struct NewsService {
                            timeStamp: timeStamp,
                            displayName: displayName,
                            onTime: onTime,
-                           news: newsList)
+                           news: sortedNewsList)
     }
     
     func getSmallestNewsImage(images: [NewsResponseModel.RelatedImage]) -> NewsImage? {

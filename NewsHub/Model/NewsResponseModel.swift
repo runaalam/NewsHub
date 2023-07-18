@@ -11,9 +11,9 @@ struct NewsResponseModel: Codable {
     let id: Int
     let assetType: String
     let url: String
-    let lastModified: Int
-    let timeStamp: Int
-    let onTime: Int
+    let lastModified: TimeInterval
+    let timeStamp: TimeInterval
+    let onTime: TimeInterval
     let displayName: String
     let assets: [Asset]
     
@@ -21,8 +21,8 @@ struct NewsResponseModel: Codable {
         let id: Int
         let assetType: String
         let url: String
-        let lastModified: Int
-        let timeStamp: Int
+        let lastModified: TimeInterval
+        let timeStamp: TimeInterval
         let authors: [Author]
         let sponsored: Bool
         let headline: String
@@ -49,9 +49,9 @@ struct NewsResponseModel: Codable {
         let assetType: String
         let url: String
         let authors: [Author]
-        let lastModified: Int
+        let lastModified: TimeInterval
         let sponsored: Bool
-        let timeStamp: Int
+        let timeStamp: TimeInterval
         let description: String
         let type: String
         let height: Int

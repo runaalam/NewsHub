@@ -30,16 +30,7 @@ class NewsViewModel: ObservableObject {
                 
                 switch result {
                 case .success(let newsStories):
-                    let sortedNews = newsStories.news.sorted(by: { $0.newsTimeStamp > $1.newsTimeStamp })
-                    let sortedNewsStories = NewsStories(id: newsStories.id,
-                                                        assetType: newsStories.assetType,
-                                                        url: newsStories.url,
-                                                        lastModified: newsStories.lastModified,
-                                                        timeStamp: newsStories.timeStamp,
-                                                        displayName: newsStories.displayName,
-                                                        onTime: newsStories.onTime,
-                                                        news: sortedNews)
-                    self.newsStories = sortedNewsStories
+                    self.newsStories = newsStories
                     self.error = nil
                 case .failure(let error):
                     self.newsStories = nil

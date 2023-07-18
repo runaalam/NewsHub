@@ -11,10 +11,10 @@ public struct NewsStories {
     let id: Int
     let assetType: AssetType
     let url: String
-    let lastModified: Int
-    let timeStamp: Int
+    let lastModified: TimeInterval
+    let timeStamp: TimeInterval
     let displayName: String
-    let onTime: Int
+    let onTime: TimeInterval
     let news: [News]
 }
 
@@ -22,8 +22,8 @@ public struct News {
     let newsId: Int
     let newsAssetType: AssetType
     let newsUrl:String
-    let newsLastModified: Int
-    let newsTimeStamp: String
+    let newsLastModified: TimeInterval
+    let newsTimeStamp: TimeInterval
     let headLine: String
     let abstract: String
     let extendedAbstract: String
@@ -38,9 +38,9 @@ public struct NewsImage {
     let imageUrl: String
     let type: String
     let description: String
-    let lastModified: Int
+    let lastModified: TimeInterval
     let photographer: String
-    let timeStamp: Int
+    let timeStamp: TimeInterval
     let height: Int
     let width: Int
 }
