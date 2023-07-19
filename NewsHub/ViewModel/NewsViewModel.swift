@@ -10,7 +10,7 @@ import Foundation
 class NewsViewModel: ObservableObject {
     @Published var newsStories: NewsStories?
     @Published var isLoading: Bool = false
-    @Published var error: Error?
+    @Published var errorText: String?
     
     let newsAPIClient = NewsAPIClient()
     let newsService: NewsService
@@ -31,10 +31,15 @@ class NewsViewModel: ObservableObject {
                 switch result {
                 case .success(let newsStories):
                     self.newsStories = newsStories
-                    self.error = nil
+                    self.errorText = nil
                 case .failure(let error):
                     self.newsStories = nil
-                    self.error = error
+                    switch error {
+                    case .message(let errorMessage):
+                        self.errorText = errorMessage
+                    default:
+                        self.errorText = "Something wrong try again!"
+                    }
                 }
             }
         }

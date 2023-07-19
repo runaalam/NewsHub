@@ -7,18 +7,17 @@
 
 import Foundation
 
-struct NewsService {
+class NewsService {
     let apiClient: APIClient
    
     init(apiClient: APIClient) {
         self.apiClient = apiClient
     }
     
-    typealias CompletionHandler = (Result<NewsStories, Error>) -> Void
+    typealias CompletionHandler = (Result<NewsStories, APIError>) -> Void
     
     func fetchAllNews(completion: @escaping CompletionHandler) {
         let endpoint = Endpoint.fetchNews
-        
         apiClient.fetchData(from: endpoint.url?.absoluteString ?? "", responseType: NewsResponseModel.self) { result in
             switch result {
             case .success(let response):
@@ -26,9 +25,9 @@ struct NewsService {
                     let newsStories = try self.mapNewsData(response)
                     completion(.success(newsStories))
                 } catch {
-                    completion(.failure(error))
+                    completion(.failure(APIError.message("Mapping error")))
                 }
-                
+
             case .failure(let error):
                 completion(.failure(error))
             }

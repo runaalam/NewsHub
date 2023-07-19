@@ -23,8 +23,11 @@ struct NewsListView: View {
                             NewsRow(news: news)
                         })
                     }
-                } else if let error = newsViewModel.error {
-                    Text("Error: \(error.localizedDescription)")
+                } else if let error = newsViewModel.errorText {
+                    Image(systemName: "exclamationmark.triangle.fill")
+                                .font(.system(size: 30))
+                                .foregroundColor(.red)
+                    Text("\(error)")
                 }
             }
             .onAppear {

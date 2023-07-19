@@ -8,18 +8,20 @@
 import Foundation
 
 protocol APIClient {
-    func fetchData<T: Decodable>(from endpoint: String, responseType: T.Type, completion: @escaping (Result<T, Error>) -> Void)
+    func fetchData<T: Decodable>(from endpoint: String, responseType: T.Type, completion: @escaping (Result<T, APIError>) -> Void)
 }
 
-enum APIError: Error {
+enum APIError: Error, Equatable {
     case invalidURL
     case requestFailed
     case decodingFailed
+    case responseError
+    case message(String)
 }
 
 class NewsAPIClient: APIClient {
 
-    func fetchData<T: Decodable>(from endpoint: String, responseType: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
+    func fetchData<T: Decodable>(from endpoint: String, responseType: T.Type, completion: @escaping (Result<T, APIError>) -> Void) {
         guard let url = URL(string: endpoint) else {
             completion(.failure(APIError.invalidURL))
             return
@@ -27,13 +29,12 @@ class NewsAPIClient: APIClient {
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
-                completion(.failure(error))
+                completion(.failure(APIError.message(error.localizedDescription)))
                 return
             }
             
-            guard let httpResponse = response as? HTTPURLResponse,
-                  (200...299).contains(httpResponse.statusCode) else {
-                completion(.failure(APIError.requestFailed))
+            guard self.isHTTPResponseValid(response) else {
+                completion(.failure(APIError.responseError))
                 return
             }
             
@@ -50,4 +51,19 @@ class NewsAPIClient: APIClient {
             }
         }.resume()
     }
+    
+    func isHTTPResponseValid(_ response: URLResponse?) -> Bool {
+        guard let httpResponse = response as? HTTPURLResponse else {
+            return false
+        }
+        let statusCode = httpResponse.statusCode
+       
+        // Success - the status code is in the range 200-299
+        if statusCode >= 200 && statusCode <= 299 {
+            return true
+        } else {
+           return false
+        }
+    }
 }
+

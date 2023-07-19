@@ -13,10 +13,10 @@ class NewsStoriesModelTest: XCTestCase {
     // MARK: - NewsStories Tests
     
     func testNewsStoriesInitialization() {
-        let news1 = makeNews(id: 1, newsImage: makeNewsImage(id: 1))
-        let news2 = makeNews(id: 2, newsUrl: "https://example.com/news2", newsImage: makeNewsImage(id: 2))
+        let news1 = MockData.makeNews(id: 1, newsImage: MockData.makeNewsImage(id: 1))
+        let news2 = MockData.makeNews(id: 2, newsUrl: "https://example.com/news2", newsImage: MockData.makeNewsImage(id: 2))
        
-        let newsStories = makeNewsStories(id: 1, url: "https://example.com/news-stories", newsList: [news1, news2])
+        let newsStories = MockData.makeNewsStories(id: 1, url: "https://example.com/news-stories", newsList: [news1, news2])
         
         XCTAssertEqual(newsStories.id, 1)
         XCTAssertEqual(newsStories.url, "https://example.com/news-stories")
@@ -27,7 +27,7 @@ class NewsStoriesModelTest: XCTestCase {
     // MARK: - News Tests
     
     func testNewsInitialization() {
-        let newsImage = makeNewsImage(id: 1)
+        let newsImage = MockData.makeNewsImage(id: 1)
         let news = News(newsId: 1,
                         newsAssetType: .article,
                         newsUrl: "https://example.com/news",
@@ -77,43 +77,5 @@ class NewsStoriesModelTest: XCTestCase {
         XCTAssertEqual(newsImage.timeStamp, 1630345678)
         XCTAssertEqual(newsImage.height, 0)
         XCTAssertEqual(newsImage.width, 300)
-    }
-    
-    func makeNewsStories(id: Int, url: String = "https://example.com/news-stories", newsList: [News] = []) -> NewsStories {
-        return NewsStories(id: id,
-                           assetType: .assetList,
-                           url: url,
-                           lastModified: 1689656194,
-                           timeStamp: 1689656194,
-                           displayName: "AFR iPad Editor's Choice",
-                           onTime: 1689656194,
-                           news: newsList)
-    }
-    
-    func makeNews(id: Int, newsUrl: String = "https://example.com/news", newsImage: NewsImage) -> News {
-        return News(newsId: id,
-                    newsAssetType: .article,
-                    newsUrl: newsUrl,
-                    newsLastModified: 1689656194,
-                    newsTimeStamp: 1689656194,
-                    headLine: "This is a headline",
-                    abstract: "This is abstract",
-                    extendedAbstract: "This is extended abstract",
-                    byLine: "This is byLine",
-                    newsImage: newsImage,
-                    newsBody: "This is news body")
-    }
-    
-    func makeNewsImage(id: Int) -> NewsImage {
-        return NewsImage(id: id,
-                assetType: .image,
-                imageUrl: "https://www.exampleImageURl.com",
-                type: "landscape",
-                description: "This is a image description",
-                lastModified: 1689656194,
-                photographer: "Runa Alam",
-                timeStamp: 1689656194,
-                height: 0,
-                width: 375)
     }
 }

@@ -10,7 +10,7 @@ import XCTest
 
 class NewsResponseModelTests: XCTestCase {
     
-    func testDecoding() throws {
+    func testNewsResponseDecoding() throws {
         let jsonString = getJsonString()
         guard let jsonData = jsonString.data(using: .utf8) else {
             XCTFail("Failed to convert JSON string to data")
