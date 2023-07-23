@@ -89,7 +89,7 @@ class NewsAPIClientTests: XCTestCase {
         let urlString = URL(string: "https://example.com")
         let expectation = XCTestExpectation(description: "Fail at decoding")
         let responseType = MockResponse.self
-       
+
         // Act
         client.fetchData(from: urlString?.absoluteString ?? "", responseType: responseType) { result in
             // It will fail at decoding so will return failure with APIError.decodingFailed
@@ -99,7 +99,7 @@ class NewsAPIClientTests: XCTestCase {
             case .failure(let error):
                 XCTAssertEqual(error, APIError.decodingFailed)
                 expectation.fulfill()
-            
+
             }
         }
         // Wait for the expectation to be fulfilled
