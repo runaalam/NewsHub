@@ -25,6 +25,8 @@
 		FD5BBBEE2A63C2AE00AD1266 /* NewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD5BBBED2A63C2AE00AD1266 /* NewsViewModel.swift */; };
 		FDE5E1642A67F88100F4BB79 /* NewsServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE5E1632A67F88100F4BB79 /* NewsServiceTest.swift */; };
 		FDE5E1662A6805A600F4BB79 /* NewsViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE5E1652A6805A600F4BB79 /* NewsViewModelTest.swift */; };
+		FDE5E1712A6D0ACD00F4BB79 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE5E1702A6D0ACD00F4BB79 /* ImageCache.swift */; };
+		FDE5E1772A6D4C4F00F4BB79 /* ImageCacheTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE5E1762A6D4C4F00F4BB79 /* ImageCacheTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		FD5BBBED2A63C2AE00AD1266 /* NewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModel.swift; sourceTree = "<group>"; };
 		FDE5E1632A67F88100F4BB79 /* NewsServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsServiceTest.swift; sourceTree = "<group>"; };
 		FDE5E1652A6805A600F4BB79 /* NewsViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewModelTest.swift; sourceTree = "<group>"; };
+		FDE5E1702A6D0ACD00F4BB79 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		FDE5E1762A6D4C4F00F4BB79 /* ImageCacheTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,7 @@
 				FD227FF72A66A4AF00223EF0 /* NewsAPIClientTest.swift */,
 				FDE5E1632A67F88100F4BB79 /* NewsServiceTest.swift */,
 				FDE5E1652A6805A600F4BB79 /* NewsViewModelTest.swift */,
+				FDE5E1762A6D4C4F00F4BB79 /* ImageCacheTest.swift */,
 			);
 			path = NewsHubTests;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 			children = (
 				FD5BBBE22A61416000AD1266 /* Endpoints.swift */,
 				FD5BBBDE2A61375800AD1266 /* ApiClient.swift */,
+				FDE5E1702A6D0ACD00F4BB79 /* ImageCache.swift */,
 				FD5BBBE02A6137F100AD1266 /* NewsService.swift */,
 			);
 			path = "Service ";
@@ -334,6 +340,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FDE5E1712A6D0ACD00F4BB79 /* ImageCache.swift in Sources */,
 				FD5BBBDF2A61375800AD1266 /* ApiClient.swift in Sources */,
 				FD5BBBEE2A63C2AE00AD1266 /* NewsViewModel.swift in Sources */,
 				FD5BBBEC2A63C25200AD1266 /* NewsListView.swift in Sources */,
@@ -354,6 +361,7 @@
 				FD227FF42A667CCD00223EF0 /* NewsStoriesModelTest.swift in Sources */,
 				FDE5E1642A67F88100F4BB79 /* NewsServiceTest.swift in Sources */,
 				FD227FF62A668BB000223EF0 /* NewsResponseModelTest.swift in Sources */,
+				FDE5E1772A6D4C4F00F4BB79 /* ImageCacheTest.swift in Sources */,
 				FDE5E1662A6805A600F4BB79 /* NewsViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

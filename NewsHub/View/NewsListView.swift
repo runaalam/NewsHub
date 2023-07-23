@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-
 struct NewsListView: View {
     @ObservedObject var newsViewModel: NewsViewModel
 
@@ -40,19 +39,34 @@ struct NewsListView: View {
 
 struct NewsRow: View {
     let news: News
+    @StateObject private var imageCache = ImageCache()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            AsyncImage(url: URL(string: news.newsImage!.imageUrl)) { image in
-                image
+            if let cachedImage = imageCache.getImage(forKey: news.newsUrl){
+                cachedImage
                     .resizable()
                     .scaledToFit()
                     .clipShape(RoundedRectangle(cornerRadius: 8))
-            } placeholder: {
-                Color.gray
+            } else {
+                AsyncImage(url: URL(string: news.newsImage!.imageUrl)) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        .onAppear {
+                            // Cache the image when it's loaded
+                            imageCache.setImage(image, forKey: news.newsImage!.imageUrl)
+                        }
+                } placeholder: {
+                    ZStack {
+                        Color.gray
+                        ProgressView("")
+                            .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                    }
+                }
+                .frame(height: 200)
             }
-            .frame(height: 200)
-            
             Text(news.headLine)
                 .font(.headline)
                 .multilineTextAlignment(.leading)
@@ -68,11 +82,9 @@ struct NewsRow: View {
     }
 }
 
-
 struct NewsView_Previews: PreviewProvider {
     static var previews: some View {
         let newsViewModel = NewsViewModel()
         NewsListView(newsViewModel: newsViewModel)
     }
 }
-

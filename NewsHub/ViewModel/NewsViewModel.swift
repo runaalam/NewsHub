@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import SwiftUI
 
 class NewsViewModel: ObservableObject {
     @Published var newsStories: NewsStories?
-    @Published var isLoading: Bool = false
+    @Published var isLoading: Bool = true
     @Published var errorText: String?
     
+    public var imageCache = ImageCache()
     let newsAPIClient = NewsAPIClient()
     let newsService: NewsService
     
@@ -32,6 +34,7 @@ class NewsViewModel: ObservableObject {
                 case .success(let newsStories):
                     self.newsStories = newsStories
                     self.errorText = nil
+                    
                 case .failure(let error):
                     self.newsStories = nil
                     switch error {

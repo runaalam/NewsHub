@@ -6,10 +6,15 @@
 //
 
 import Foundation
+import SwiftUI
+
+enum ImageError: Error, Equatable {
+    case invalidImage
+}
 
 class NewsService {
     let apiClient: APIClient
-   
+    
     init(apiClient: APIClient) {
         self.apiClient = apiClient
     }
