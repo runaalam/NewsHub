@@ -5,7 +5,7 @@
 
 ## Features
 - News List: The app displays a list of news stories sorted by their publication timestamps. Users can scroll through the list to discover various articles.
-- News Details: Tapping on a news story opens the detailed view, showing the article's headline, byline, abstract, and the main body of the article. It also displays the relevant image associated with the news.
+- News Details: When tapping on a news story, it opens in Safari View and redirects to the respective news site.
 - Image Caching: To enhance performance, the app uses an ImageCache to cache news images. This reduces the need to repeatedly download the same images when navigating through the news list.
 - Error Handling: The app handles various potential errors and displays appropriate error messages when something goes wrong during data fetching or decoding.
 - Loading Indicator: While fetching news data from the server, a loading indicator is displayed to keep users informed about ongoing data retrieval.
