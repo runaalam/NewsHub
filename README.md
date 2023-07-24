@@ -12,7 +12,7 @@
 - Network Connectivity: The app checks the device's network connectivity and handles offline scenarios, ensuring that users receive a clear indication when there is no internet connection.
 - Unit Tests: The app includes a comprehensive suite of unit tests to ensure the correctness and stability of critical components, such as the API client, data models, view models, and cache.
 
-##Architecture
+## Architecture
 - This project follows a structured architecture pattern to maintain a separation of concerns and ensure code maintainability. 
 - It utilises the Model-View-ViewModel (MVVM) design pattern, where each view has a corresponding view model responsible for handling business logic and data binding. 
 - The data models represent the structure of news stories and other entities in the application.
