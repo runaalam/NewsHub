@@ -8,10 +8,9 @@
 import Foundation
 import SwiftUI
 
-// NewsListView displays a list of news articles fetched from the NewsViewModel.
-// It shows a loading indicator while fetching data, displays the list of news articles in a List view,
-// and handles error cases by showing an exclamation mark icon and an error message.
-
+/// NewsListView displays a list of news articles fetched from the NewsViewModel.
+/// It shows a loading indicator while fetching data, displays the list of news articles in a List view,
+/// and handles error cases by showing an exclamation mark icon and an error message.
 struct NewsListView: View {
     @ObservedObject var newsViewModel: NewsViewModel
 
@@ -46,10 +45,9 @@ struct NewsListView: View {
     }
 }
 
-// NewsRow displays a single news article in a VStack.
-// It uses an ImageCache to load and cache the news article's image.
-// If the image is available in the cache, it's displayed; otherwise, AsyncImage is used to load the image asynchronously.
-
+/// NewsRow displays a single news article in a VStack.
+/// It uses an ImageCache to load and cache the news article's image.
+/// If the image is available in the cache, it's displayed; otherwise, AsyncImage is used to load the image asynchronously.
 struct NewsRow: View {
     let news: News
     @StateObject private var imageCache = ImageCache()

@@ -8,18 +8,25 @@
 import XCTest
 @testable import NewsHub
 
+/// NewsResponseModelTests is a test class containing test cases for decoding the NewsResponseModel from JSON data.
 class NewsResponseModelTests: XCTestCase {
     
+    /// Test the decoding of the NewsResponseModel from JSON data.
     func testNewsResponseDecoding() throws {
+        // Get the JSON string representation of the NewsResponseModel.
         let jsonString = getJsonString()
+        
+        // Convert the JSON string to data.
         guard let jsonData = jsonString.data(using: .utf8) else {
             XCTFail("Failed to convert JSON string to data")
             return
         }
         
         do {
+            // Decode the JSON data into a NewsResponseModel object.
             let response = try JSONDecoder().decode(NewsResponseModel.self, from: jsonData)
             
+            // Assert that the properties of the NewsResponseModel object are correctly decoded.
             XCTAssertEqual(response.id, 123)
             XCTAssertEqual(response.assetType, "ASSET_LIST")
             XCTAssertEqual(response.url, "https://example.com/newsStories")
@@ -29,7 +36,8 @@ class NewsResponseModelTests: XCTestCase {
             XCTAssertEqual(response.displayName, "AFR iPad Editor's Choice")
             XCTAssertEqual(response.assets.count, 1)
             
-            // Compare Assets
+            // Compare the properties of the first asset in the NewsResponseModel.
+
             let asset = response.assets.first
             XCTAssertEqual(asset?.id, 456)
             XCTAssertEqual(asset?.assetType, "ARTICLE")
@@ -48,7 +56,7 @@ class NewsResponseModelTests: XCTestCase {
             XCTAssertEqual(asset?.categories.count, 0)
             XCTAssertEqual(asset?.relatedImages.count, 1)
             
-            // Compare related image
+            // Compare the properties of the first related image in the asset.
             let relatedImage = asset?.relatedImages.first
             XCTAssertEqual(relatedImage?.id, 789)
             XCTAssertEqual(relatedImage?.assetType, "IMAGE")
@@ -68,6 +76,7 @@ class NewsResponseModelTests: XCTestCase {
         }
     }
     
+    /// Get the JSON string representation of the NewsResponseModel for testing purposes.
     func getJsonString() -> String {
         let jsonString = """
         {

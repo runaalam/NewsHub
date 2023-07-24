@@ -8,6 +8,7 @@
 import XCTest
 @testable import NewsHub
 
+/// NewsServiceTests is a test class containing test cases for the NewsService class.
 class NewsServiceTests: XCTestCase {
     var apiClient: MockAPIClient!
     var newsService: NewsService!
@@ -15,6 +16,7 @@ class NewsServiceTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
+        // Set up the MockAPIClient with default success response.
         apiClient = MockAPIClient(shouldSucceed: true)
         newsService = NewsService(apiClient: apiClient)
     }
@@ -25,6 +27,7 @@ class NewsServiceTests: XCTestCase {
         super.tearDown()
     }
     
+    /// Test the fetchAllNews method with a successful API response.
     func testFetchAllNews_WithSuccessResponse_ReturnsNewsStories() {
         // Arrange
         let response = NewsResponseModel(
@@ -78,6 +81,7 @@ class NewsServiceTests: XCTestCase {
         }
     }
 
+    /// Test the fetchAllNews method with a failure API response.
     func testFetchAllNews_WithFailureResponse_ReturnsError() {
         // Arrange
         let expectedError = APIError.requestFailed
@@ -107,6 +111,7 @@ class NewsServiceTests: XCTestCase {
     }
 }
 
+/// MockAPIClient is a mock implementation of the APIClient protocol for testing purposes.
 class MockAPIClient: APIClient {
     var shouldSucceed: Bool
     var responseData: Data?

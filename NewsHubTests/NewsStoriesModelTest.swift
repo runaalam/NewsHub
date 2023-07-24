@@ -8,16 +8,21 @@
 import XCTest
 @testable import NewsHub
 
+/// NewsStoriesModelTest is a test class containing test cases for the models in the NewsStories application.
 class NewsStoriesModelTest: XCTestCase {
     
     // MARK: - NewsStories Tests
     
+    /// Test the initialisation of the NewsStories model.
     func testNewsStoriesInitialization() {
+        // Create mock News objects.
         let news1 = MockData.makeNews(id: 1, newsImage: MockData.makeNewsImage(id: 1))
         let news2 = MockData.makeNews(id: 2, newsUrl: "https://example.com/news2", newsImage: MockData.makeNewsImage(id: 2))
        
+        // Create the NewsStories object using the mock News objects.
         let newsStories = MockData.makeNewsStories(id: 1, url: "https://example.com/news-stories", newsList: [news1, news2])
         
+        // Assert that the properties of the NewsStories object are correctly initialized.
         XCTAssertEqual(newsStories.id, 1)
         XCTAssertEqual(newsStories.url, "https://example.com/news-stories")
         XCTAssertEqual(newsStories.news[0], news1)
@@ -25,9 +30,13 @@ class NewsStoriesModelTest: XCTestCase {
     }
     
     // MARK: - News Tests
-    
+
+    /// Test the initialisation of the News model.
     func testNewsInitialization() {
+        // Create a mock NewsImage object.
         let newsImage = MockData.makeNewsImage(id: 1)
+        
+        // Create the News object using the mock NewsImage.
         let news = News(newsId: 1,
                         newsAssetType: .article,
                         newsUrl: "https://example.com/news",
@@ -40,6 +49,7 @@ class NewsStoriesModelTest: XCTestCase {
                         newsImage: newsImage,
                         newsBody: "News Body")
 
+        // Assert that the properties of the News object are correctly initialized.
         XCTAssertEqual(news.newsId, 1)
         XCTAssertEqual(news.newsAssetType, .article)
         XCTAssertEqual(news.newsUrl, "https://example.com/news")
@@ -55,6 +65,7 @@ class NewsStoriesModelTest: XCTestCase {
     
     // MARK: - NewsImage Tests
     
+    /// Test the initialisation of the NewsImage model.
     func testNewsImageInitialization() {
         let newsImage = NewsImage(id: 1,
                                   assetType: .image,

@@ -8,12 +8,11 @@
 import Foundation
 import SwiftUI
 
-// NewsViewModel is a ViewModel class responsible for managing the data related to news articles.
-// It has three @Published properties:
-// 1. newsStories: Stores the fetched NewsStories object containing a list of news articles.
-// 2. isLoading: A boolean flag that indicates whether data is currently being fetched from the server.
-// 3. errorText: Contains the error message in case of a failure while fetching news articles.
-
+/// NewsViewModel is a ViewModel class responsible for managing the data related to news articles.
+/// It has three @Published properties:
+/// 1. newsStories: Stores the fetched NewsStories object containing a list of news articles.
+/// 2. isLoading: A boolean flag that indicates whether data is currently being fetched from the server.
+/// 3. errorText: Contains the error message in case of a failure while fetching news articles.
 class NewsViewModel: ObservableObject {
     @Published var newsStories: NewsStories?
     @Published var isLoading: Bool = true

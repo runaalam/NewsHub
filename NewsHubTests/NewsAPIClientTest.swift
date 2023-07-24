@@ -8,11 +8,13 @@
 import XCTest
 @testable import NewsHub
 
+/// NewsAPIClientTests is a test class containing test cases for the NewsAPIClient class.
 class NewsAPIClientTests: XCTestCase {
     var client: NewsAPIClient!
 
     override func setUp() {
         super.setUp()
+        // Create an instance of NewsAPIClient for testing.
         client = NewsAPIClient()
     }
 
@@ -21,6 +23,7 @@ class NewsAPIClientTests: XCTestCase {
         super.tearDown()
     }
 
+    /// Test the isHTTPResponseValid method with a valid HTTPURLResponse.
     func testIsHTTPResponseValid_WithValidResponse_ReturnsTrue() {
         // Arrange
         let response = HTTPURLResponse(
@@ -37,6 +40,7 @@ class NewsAPIClientTests: XCTestCase {
         XCTAssertTrue(isValid)
     }
 
+    /// Test the isHTTPResponseValid method with an invalid URLResponse.
     func testIsHTTPResponseValid_WithInvalidResponse_ReturnsFalse() {
         // Arrange
         let response = URLResponse(
@@ -53,9 +57,10 @@ class NewsAPIClientTests: XCTestCase {
         XCTAssertFalse(isValid)
     }
     
+    /// Test the fetchData method with a valid URL and valid response type.
     func testFetchData_WithValidURL_ReturnsSuccessResult() {
        
-        // Given response type
+        // Given a response type struct for testing.
         struct PostResponse: Codable {
             let userId: Int
             let id: Int
@@ -63,7 +68,7 @@ class NewsAPIClientTests: XCTestCase {
             let body: String
         }
 
-        // Given Url
+        // Given a valid URL for testing.
         let urlString = URL(string: "https://jsonplaceholder.typicode.com/posts")?.absoluteString ?? ""
         let responseType = [PostResponse].self
         let expectation = XCTestExpectation(description: "Fetch data completion called")
@@ -84,6 +89,7 @@ class NewsAPIClientTests: XCTestCase {
         wait(for: [expectation], timeout: 5.0)
     }
 
+    /// Test the fetchData method with a valid URL but decoding fails.
     func testFetchData_DecodingFail() {
         // Given Url which will consider as valid url
         let urlString = URL(string: "https://example.com")
@@ -105,13 +111,8 @@ class NewsAPIClientTests: XCTestCase {
         // Wait for the expectation to be fulfilled
         wait(for: [expectation], timeout: 5.0)
     }
-    
-    func decodeData<T: Decodable>(data: Data) throws -> T {
-        let decoder = JSONDecoder()
-        let decodedResponse = try decoder.decode(T.self, from: data)
-        return decodedResponse
-    }
-
+ 
+    /// Test the fetchData method with an invalid URL.
     func testFetchData_WithInvalidURL() {
         // Given
         let invalidURL = "invalid-url"
@@ -131,11 +132,18 @@ class NewsAPIClientTests: XCTestCase {
                
             }
         }
-
+        // Wait for the expectation to be fulfilled
         wait(for: [expectation], timeout: 5.0)
     }
     
-    // Mock response structure for testing
+    /// Helper method for decoding data.
+    func decodeData<T: Decodable>(data: Data) throws -> T {
+        let decoder = JSONDecoder()
+        let decodedResponse = try decoder.decode(T.self, from: data)
+        return decodedResponse
+    }
+    
+    /// Mock response structure for testing
     struct MockResponse: Codable {
         let data: Data
     }

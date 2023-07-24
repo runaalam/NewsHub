@@ -8,8 +8,10 @@
 import XCTest
 @testable import NewsHub
 
+/// NewsViewModelTests is a test class containing test cases for the NewsViewModel class.
 class NewsViewModelTests: XCTestCase {
 
+    /// Test the fetchAllNews method with a successful API response.
     func testFetchAllNews_WithSuccessResponse_SetsNewsStories() {
         // Arrange
         let viewModel = NewsViewModel()
