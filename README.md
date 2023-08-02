@@ -29,7 +29,6 @@
 - The News App places great emphasis on testing to ensure the reliability and stability of the application. 
 - It includes unit tests for various components, such as view models, data models, service classes, and the image caching functionality. 
 - The unit tests validate the correct behaviour of individual components and ensure seamless integration with the overall app architecture.
-- No unit tests have been added for the user interface (UI) components as the UI is fully implemented using SwiftUI views. Testing SwiftUI views requires third-party automation testing tools, and setting up such testing can be a complex and time-consuming task.
 
 ## Compatibility
-- The News App is designed to run on iOS devices running iOS 14 and later versions.
+- The News App is designed to run on iOS devices running iOS 15 and later versions.
