@@ -42,6 +42,7 @@ struct NewsListView: View {
             }
             .navigationTitle("News Hub")
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
@@ -53,6 +54,7 @@ struct NewsRow: View {
     @StateObject private var imageCache = ImageCache()
     
     var body: some View {
+       
         VStack(alignment: .leading, spacing: 8) {
             // If the image is available in the cache, display it using the cached Image.
             if let cachedImage = imageCache.getImage(forKey: news.newsUrl){
@@ -79,7 +81,6 @@ struct NewsRow: View {
                             .progressViewStyle(CircularProgressViewStyle(tint: .white))
                     }
                 }
-                .frame(height: 200)
             }
             // Display the news article's headline, byline, and abstract.
             Text(news.headLine)
@@ -94,6 +95,7 @@ struct NewsRow: View {
                 .multilineTextAlignment(.leading)
         }
         .padding()
+    
     }
 }
 
